@@ -5,7 +5,7 @@ repo also here : ``
 ## Setup
 
 ```shell
-$ npm clone https://github.com/ssbc/patchbay-builder
+$ git clone https://github.com/ssbc/patchbay-builder
 $ cd patchbay-builder
 $ npm install
 ```
