@@ -8,10 +8,21 @@ repo also here : ``
 $ npm clone https://github.com/ssbc/patchbay-builder
 $ cd patchbay-builder
 $ npm install
-$ git clone https://github.com/ssbc/patchbay app
 ```
 
-The latest app source should be in `./app`
+The latest patchbay source should be in `./app`. I like to symlink my working patchbay folder into place, because this is easier to maintain e.g.:
+
+```shell
+$ ln -s /home/mix/projects/patchbay /home/mix/projects/patchbay-builder/app
+```
+
+Alternatively, you can clone a copy of the patchbay repo to the app folder:
+
+```shell
+$ git clone https://github.com/ssbc/patchbay app
+$ cd app
+$ npm install
+```
 
 ### Dependencies
 
@@ -29,7 +40,7 @@ sudo apt-get install icnsutils graphicsmagick xz-utils
 npm install 7zip-bin-linux
 ```
 
-(**WARNING - looks like `7zip-bin` is being fancy** .. the package-lock Matt uploaded has `7zip-bin-mac` in in)
+(**WARNING - looks like `7zip-bin` is being fancy** .. the package-lock Matt uploaded has `7zip-bin-mac` in it)
 
 ## Stamp Release
 
