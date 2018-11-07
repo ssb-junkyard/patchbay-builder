@@ -58,14 +58,14 @@
     },
     "dmg": {
       "icon": "build/dmg-icon.icns",
-      "artifactName": "Patchbay-${version}-mac.${ext}"
+      "artifactName": "${name}-mac-${version}.${ext}"
     },
     "appImage": {
-      "artifactName": "Patchbay-${version}-linux-${arch}.${ext}"
+      "artifactName": "${name}-linux-${version}-${arch}.${ext}"
     },
     "nsis": {
       "installerIcon": "build/setup-icon.ico",
-      "artifactName": "Patchbay-${version}-windows.${ext}"
+      "artifactName": "${name}-windows-${version}.${ext}"
     }
   },
   "devDependencies": {
