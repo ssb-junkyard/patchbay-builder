@@ -18,7 +18,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "build": {
-    "appId": "org.ssbc.patchbay",
+    "appId": "org.ssbc.${name}",
     "asarUnpack": [
       "node_modules/sodium-native/prebuilds"
     ],
@@ -29,10 +29,11 @@
     "files": [
       "**/*",
       "!node_modules/**/deps${/*}",
-      "!node_modules/**/_node_modules${/*}",
-      "!node_modules/sodium-native/prebuilds${/*}",
-      "node_modules/sodium-native/prebuilds/${os}-${arch}/electron-57.node",
-      "node_modules/sodium-native/prebuilds/${os}-${arch}/libsodium.*"
+      "!node_modules/**/_node_modules${/*}"
+    ],
+    "extraFiles": [
+      "app/node_modules/sodium-native/prebuilds/${os}-${arch}/electron-57.node",
+      "app/node_modules/sodium-native/prebuilds/${os}-${arch}/libsodium.*"
     ],
     "mac": {
       "icon": "build/icon.icns",
@@ -46,15 +47,12 @@
       ]
     },
     "linux": {
+      "target": "AppImage",
       "category": "Network"
     },
     "win": {
       "icon": "build/icon.ico",
-      "publisherName": "Secure Scuttlebutt Consortium",
-      "files": [
-        "node_modules/sodium-native/prebuilds/win32-${arch}/electron-57.node",
-        "node_modules/sodium-native/prebuilds/win32-${arch}/libsodium.*"
-      ]
+      "publisherName": "Secure Scuttlebutt Consortium"
     },
     "dmg": {
       "icon": "build/dmg-icon.icns",
@@ -69,7 +67,8 @@
     }
   },
   "devDependencies": {
+    "asar": "^0.14.5",
     "electron": "^2.0.11",
-    "electron-builder": "^20.8.1"
+    "electron-builder": "^20.28.4"
   }
 }
