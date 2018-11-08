@@ -19,20 +19,21 @@
   },
   "build": {
     "appId": "org.ssbc.patchbay",
-    "asarUnpack": [
-      "node_modules/sodium-native/prebuilds"
-    ],
-    "npmSkipBuildFromSource": true,
     "npmArgs": [
       "--abi=57"
     ],
     "files": [
       "**/*",
       "!node_modules/**/deps${/*}",
-      "!node_modules/**/_node_modules${/*}",
-      "!node_modules/sodium-native/prebuilds${/*}",
-      "node_modules/sodium-native/prebuilds/${os}-${arch}/electron-57.node",
-      "node_modules/sodium-native/prebuilds/${os}-${arch}/libsodium.*"
+      "!node_modules/**/_node_modules${/*}"
+    ],
+    "extraFiles": [
+      "app/node_modules/sodium-native/prebuilds/${os}-${arch}/electron-57.node",
+      "app/node_modules/sodium-native/prebuilds/${os}-${arch}/libsodium.*",
+      {
+        "from": "app/node_modules/forked-systray/systrayhelper",
+        "to": "systrayhelper"
+      }
     ],
     "mac": {
       "icon": "build/icon.icns",
@@ -46,30 +47,38 @@
       ]
     },
     "linux": {
-      "category": "Network"
+      "target": "AppImage",
+      "category": "Network",
+      "extraFiles": [
+        {
+          "from": "/usr/lib/x86_64-linux-gnu/libappindicator3.so.1",
+          "to": "usr/lib/libappindicator3.so.1"
+        },
+        {
+          "from": "/usr/lib/x86_64-linux-gnu/libindicator3.so.7",
+          "to": "usr/lib/libindicator3.so.7"
+        }
+      ]
     },
     "win": {
       "icon": "build/icon.ico",
-      "publisherName": "Secure Scuttlebutt Consortium",
-      "files": [
-        "node_modules/sodium-native/prebuilds/win32-${arch}/electron-57.node",
-        "node_modules/sodium-native/prebuilds/win32-${arch}/libsodium.*"
-      ]
+      "publisherName": "Secure Scuttlebutt Consortium"
     },
     "dmg": {
       "icon": "build/dmg-icon.icns",
-      "artifactName": "Patchbay-${version}-mac.${ext}"
+      "artifactName": "${name}-mac-${version}.${ext}"
     },
     "appImage": {
-      "artifactName": "Patchbay-${version}-linux-${arch}.${ext}"
+      "artifactName": "${name}-linux-${version}-${arch}.${ext}"
     },
     "nsis": {
       "installerIcon": "build/setup-icon.ico",
-      "artifactName": "Patchbay-${version}-windows.${ext}"
+      "artifactName": "${name}-windows-${version}.${ext}"
     }
   },
   "devDependencies": {
+    "asar": "^0.14.5",
     "electron": "^2.0.11",
-    "electron-builder": "^20.8.1"
+    "electron-builder": "^20.28.4"
   }
 }
