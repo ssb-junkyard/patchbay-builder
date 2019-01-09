@@ -18,7 +18,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "build": {
-    "appId": "org.ssbc.patchbay",
+    "appId": "org.ssbc.${name}",
+    "asarUnpack": [
+      "node_modules/sodium-native/prebuilds"
+    ],
+    "npmSkipBuildFromSource": true,
     "npmArgs": [
       "--abi=57"
     ],
